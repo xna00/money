@@ -1,8 +1,15 @@
 import React from 'react';
+import styled from "styled-components";
+
+const Button = styled.button`
+color: red;
+`
 
 function App() {
     return (
-        <div></div>
+        <div>
+            <Button>1234</Button>
+        </div>
     );
 }
 
