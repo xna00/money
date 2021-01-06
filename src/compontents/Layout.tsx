@@ -16,7 +16,6 @@ type Props = {
 }
 const Layout = (props: Props) => {
     return (
-
         <Wrapper>
             <Main>
                 {props.children}
