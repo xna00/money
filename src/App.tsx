@@ -10,8 +10,6 @@ import Money from "./views/Money";
 import Statistics from "./views/Statistics";
 import NoMatch from "./views/Nomatch";
 
-
-
 function App() {
     return (
         <Router>
@@ -33,6 +31,5 @@ function App() {
         </Router>
     );
 }
-
 
 export default App;
