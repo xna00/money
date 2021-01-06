@@ -8,39 +8,28 @@ import {
     Redirect
 } from "react-router-dom";
 import styled from "styled-components";
-const Wrapper = styled.div`
-display: flex;
-flex-direction: column;
-height: 100vh;
-`
-const Main = styled.main`
-flex-grow: 1;
-overflow: auto;
-`
+import Layout from "./compontents/Layout";
+
+
 
 function App() {
     return (
         <Router>
-            <Wrapper>
-                <Main>
-                    <Switch>
-                        <Route path="/tags">
-                            <Tags/>
-                        </Route>
-                        <Route path="/money">
-                            <Money/>
-                        </Route>
-                        <Route path="/statistics">
-                            <Statistics/>
-                        </Route>
-                        <Redirect exact from="/" to="/tags"/>
-                        <Route path="*">
-                            <NoMatch/>
-                        </Route>
-                    </Switch>
-                </Main>
-                <Nav/>
-            </Wrapper>
+            <Switch>
+                <Route path="/tags">
+                    <Tags/>
+                </Route>
+                <Route path="/money">
+                    <Money/>
+                </Route>
+                <Route path="/statistics">
+                    <Statistics/>
+                </Route>
+                <Redirect exact from="/" to="/tags"/>
+                <Route path="*">
+                    <NoMatch/>
+                </Route>
+            </Switch>
         </Router>
     );
 }
@@ -50,7 +39,11 @@ function NoMatch() {
 }
 
 function Tags() {
-    return <h2>Tags</h2>;
+    return (
+        <Layout>
+            <h1>tags</h1>
+        </Layout>
+    );
 }
 
 function Money() {

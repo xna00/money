@@ -9,14 +9,16 @@ box-shadow: 0 0 3px rgba(0,0,0,0.25);
       display: flex;
       justify-content: space-around;
       > li {
+          padding: 5px 0;
+          > a {
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 5px 0;
           > .icon {
             width: 24px;
             height: 24px;
           } 
+          }
       }
     }
 `
@@ -25,16 +27,19 @@ function Nav() {
     return <NavWrapper>
         <ul>
             <li>
-                <Icon name="tag"/>
-                <Link to="/tags">标签</Link>
+                <Link to="/tags">
+                    <Icon name="tag"/>
+                    标签</Link>
             </li>
             <li>
-                <Icon name="money"/>
-                <Link to="/money">记账</Link>
+                <Link to="/money">
+                    <Icon name="money"/>
+                    记账</Link>
             </li>
             <li>
-                <Icon name="chart"/>
-                <Link to="/statistics">统计</Link>
+                <Link to="/statistics">
+                    <Icon name="chart"/>
+                    统计</Link>
             </li>
         </ul>
     </NavWrapper>
