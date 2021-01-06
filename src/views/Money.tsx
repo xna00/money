@@ -4,7 +4,7 @@ import React from "react";
 import CategorySection from "./Money/CategorySection";
 import NotesSection from "./Money/NotesSection";
 import NumberPadSection from "./Money/NumberPadSection";
-import TagsSection from "./Money/TagsSection";
+import {TagsSection} from "./Money/TagsSection";
 
 
 const MoneyLayout = styled(Layout)`
@@ -15,15 +15,7 @@ flex-direction: column;
 function Money() {
     return (
         <MoneyLayout>
-            <TagsSection>
-                <ul>
-                    <li>衣</li>
-                    <li>食</li>
-                    <li>住</li>
-                    <li>行</li>
-                </ul>
-                <button>新增标签</button>
-            </TagsSection>
+            <TagsSection/>
             <NotesSection>
                 <label>
                     <span>备注</span>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import React, {useState} from "react";
 
-const TagsSection = styled.section`
+const Wrapper = styled.section`
   background: #FFFFFF; padding: 12px 16px;
   flex-grow: 1; display:flex; flex-direction: column;
   justify-content: flex-end; align-items: flex-start;
@@ -10,6 +11,9 @@ const TagsSection = styled.section`
        display:inline-block; padding: 3px 18px; 
        font-size: 14px; margin: 8px 12px;
        cursor: pointer;
+       &.selected {
+       background: red;
+       }
     }
   }
   > button{
@@ -20,4 +24,33 @@ const TagsSection = styled.section`
     cursor: pointer;
   }
 `
-export default TagsSection
+const TagsSection = () => {
+    const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行'])
+    const [selectedTags, setSelectedTags] = useState<string[]>([])
+    const addTag = () => {
+        const tagName = window.prompt()
+        if (tagName) {
+            setTags([...tags, tagName])
+        }
+    }
+    const toggleTag = (tag: string) => {
+        setSelectedTags(
+            selectedTags.includes(tag) ?
+                selectedTags.filter(t => t !== tag) :
+                [...selectedTags, tag]
+        )
+    }
+    return (
+        <Wrapper>
+            <ul>
+                {tags.map(tag =>
+                    <li key={tag} onClick={() => toggleTag(tag)}
+                        className={selectedTags.includes(tag) ? 'selected' : ''}>
+                        {tag}
+                    </li>)}
+            </ul>
+            <button onClick={addTag}>新增标签</button>
+        </Wrapper>
+    )
+}
+export {TagsSection}
