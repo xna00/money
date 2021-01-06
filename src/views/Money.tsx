@@ -1,9 +1,9 @@
 import Layout from "../compontents/Layout";
-import React from "react";
 import styled from "styled-components";
+import React from "react";
 
 const TagsSection = styled.section`
- background: #FFFFFF; padding: 12px 16px;
+  background: #FFFFFF; padding: 12px 16px;
   flex-grow: 1; display:flex; flex-direction: column;
   justify-content: flex-end; align-items: flex-start;
   > ul { margin: 0 -12px;
@@ -112,10 +112,13 @@ const NumberPadSection = styled.section`
     }
   }
 `
-
+const MoneyLayout = styled(Layout)`
+display: flex;
+flex-direction: column;
+`
 function Money() {
     return (
-        <Layout>
+        <MoneyLayout>
             <TagsSection>
                 <ul>
                     <li>衣</li>
@@ -156,7 +159,7 @@ function Money() {
                     <button className="dot">.</button>
                 </div>
             </NumberPadSection>
-        </Layout>
+        </MoneyLayout>
     );
 }
 
