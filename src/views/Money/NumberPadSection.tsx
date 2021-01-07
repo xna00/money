@@ -56,6 +56,8 @@ type Props = {
     onOk?: () => void
 }
 const NumberPadSection: React.FC<Props> = (props) => {
+    // ?
+    // const [output] = useState(props.value)
     const output = props.value
     const onClickButtonWrapper = (e: React.MouseEvent) => {
         let newOutput = output
