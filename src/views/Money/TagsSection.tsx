@@ -24,9 +24,14 @@ const Wrapper = styled.section`
     cursor: pointer;
   }
 `
-const TagsSection = () => {
+type Props = {
+    value: string[],
+    onChange: (tags: string[]) => void
+}
+const TagsSection: React.FC<Props> = (props) => {
     const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行'])
-    const [selectedTags, setSelectedTags] = useState<string[]>([])
+    // const [selectedTags, setSelectedTags] = useState<string[]>([])
+    const selectedTags = props.value
     const addTag = () => {
         const tagName = window.prompt()
         if (tagName) {
@@ -34,7 +39,7 @@ const TagsSection = () => {
         }
     }
     const toggleTag = (tag: string) => {
-        setSelectedTags(
+        props.onChange(
             selectedTags.includes(tag) ?
                 selectedTags.filter(t => t !== tag) :
                 [...selectedTags, tag]

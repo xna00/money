@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, {useState} from "react";
+import React from "react";
 
 const Wrapper = styled.section`
   display:flex;
@@ -50,8 +50,13 @@ const Wrapper = styled.section`
     }
   }
 `
-const NumberPadSection: React.FC = () => {
-    const [output, setOutput] = useState('0')
+type Props = {
+    value: string,
+    onChange: (amount: string) => void,
+    onOk?: () => void
+}
+const NumberPadSection: React.FC<Props> = (props) => {
+    const output = props.value
     const onClickButtonWrapper = (e: React.MouseEvent) => {
         let newOutput = output
         const text = (e.target as HTMLButtonElement).textContent
@@ -69,14 +74,14 @@ const NumberPadSection: React.FC = () => {
             newOutput = '0'
         } else if (text === '删除') {
             newOutput = newOutput.slice(0, -1) || '0'
-        } else if (text === 'OK') {
-            console.log('ok')
+        } else if (text === 'OK' && props.onOk) {
+            props.onOk()
         } else {
             return
         }
         if (newOutput.length >= 16)
             newOutput = newOutput.slice(0, 17)
-        setOutput(newOutput)
+        props.onChange(newOutput)
     }
     return (
         <Wrapper>
