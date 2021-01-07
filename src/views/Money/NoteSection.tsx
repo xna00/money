@@ -25,7 +25,7 @@ const NoteSection = () => {
     const inputRef = useRef<HTMLInputElement>(null)
     const onBlur = () => {
         if (inputRef.current) {
-            console.log(inputRef.current.value)
+            setNote(inputRef.current.value)
         }
     }
     return (

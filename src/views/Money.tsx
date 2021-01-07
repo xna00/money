@@ -1,7 +1,7 @@
 import Layout from "../compontents/Layout";
 import styled from "styled-components";
 import React from "react";
-import CategorySection from "./Money/CategorySection";
+import {CategorySection} from "./Money/CategorySection";
 import {NoteSection} from "./Money/NoteSection";
 import NumberPadSection from "./Money/NumberPadSection";
 import {TagsSection} from "./Money/TagsSection";
@@ -17,12 +17,7 @@ function Money() {
         <MoneyLayout>
             <TagsSection/>
             <NoteSection/>
-            <CategorySection>
-                <ul>
-                    <li>收入</li>
-                    <li>支出</li>
-                </ul>
-            </CategorySection>
+            <CategorySection/>
             <NumberPadSection>
                 <div className="output">100</div>
                 <div className="pad">
