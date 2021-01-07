@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import React, {useState} from "react";
 
-const NumberPadSection = styled.section`
+const Wrapper = styled.section`
   display:flex;
   flex-direction: column;
   > .output{
@@ -49,4 +50,54 @@ const NumberPadSection = styled.section`
     }
   }
 `
-export default NumberPadSection
+const NumberPadSection: React.FC = () => {
+    const [output, setOutput] = useState('0')
+    const onClickButtonWrapper = (e: React.MouseEvent) => {
+        let newOutput = output
+        const text = (e.target as HTMLButtonElement).textContent
+        if (text === null) {
+            return
+        }
+        if (text.length === 1 && text >= '0' && text <= '9') {
+            if (newOutput === '0')
+                newOutput = text
+            else
+                newOutput += text
+        } else if (text === '.' && !newOutput.includes('.')) {
+            newOutput += '.'
+        } else if (text === '清空') {
+            newOutput = '0'
+        } else if (text === '删除') {
+            newOutput = newOutput.slice(0, -1) || '0'
+        } else if (text === 'OK') {
+            console.log('ok')
+        } else {
+            return
+        }
+        if (newOutput.length >= 16)
+            newOutput = newOutput.slice(0, 17)
+        setOutput(newOutput)
+    }
+    return (
+        <Wrapper>
+            <div className="output">{output}</div>
+            <div className="pad" onClick={onClickButtonWrapper}>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>删除</button>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>清空</button>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button className="ok">OK</button>
+                <button className="zero">0</button>
+                <button>.</button>
+            </div>
+        </Wrapper>
+    )
+}
+export {NumberPadSection}
