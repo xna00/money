@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
-import {Category} from "../views/Money/CategorySection";
+import {CategoryType} from "../compontents/Category";
 
 export type _RecordItem = {
     tags: number[],
     note: string,
-    category: Category,
+    category: CategoryType,
     amount: string
 }
 type RecordItem = {
