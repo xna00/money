@@ -56,7 +56,7 @@ const RecordList: React.FC<X> = (props) => {
 
 function Statistics() {
     const {records} = useRecords()
-    const [category, setCategory] = useState<CategoryType>('收入')
+    const [category, setCategory] = useState<CategoryType>('支出')
     const onChange = (category: CategoryType) => setCategory(category)
     const selectedRecords = records.filter(r => r.category === category)
     const sortedRecords: { [K: string]: RecordItem[] } = {}

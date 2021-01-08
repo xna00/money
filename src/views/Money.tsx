@@ -15,7 +15,7 @@ flex-direction: column;
 const defaultSelected: _RecordItem = {
     tags: [],
     note: '',
-    category: '收入',
+    category: '支出',
     amount: '0'
 }
 

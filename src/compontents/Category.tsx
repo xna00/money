@@ -30,7 +30,7 @@ const Wrapper = styled.div`
 `
 export type CategoryType = '收入' | '支出'
 const Category: React.FC<Props> = (props) => {
-    const categoryList: CategoryType[] = ['收入', '支出']
+    const categoryList: CategoryType[] = ['支出', '收入']
     const category = props.value
     return (
         <Wrapper>
