@@ -43,6 +43,13 @@ const useTags = () => {
     const findTag = (id: number) => {
         return tags.find(tag => tag.id === id)
     }
-    return {tags, setTags, addTag, findTag}
+    const filterTag = (id: number) => tags.filter(tag => tag.id !== id)
+    const deleteTag = (id: number) => {
+        setTags(filterTag(id))
+    }
+    const updateTag = (id: number, name: string) => {
+        setTags(filterTag(id).concat({id, name}))
+    }
+    return {tags, setTags, addTag, findTag, deleteTag, updateTag}
 }
 export default useTags
