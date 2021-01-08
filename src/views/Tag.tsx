@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import Layout from "../compontents/Layout";
 import {
     Link,
     useParams
 } from "react-router-dom";
-import useTags from "../useTags";
+import useTags from "../hooks/useTags";
 import styled from "styled-components";
 import Icon from "../compontents/Icon";
 import {Button} from "../compontents/Buton";

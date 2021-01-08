@@ -78,6 +78,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
             newOutput = newOutput.slice(0, -1) || '0'
         } else if (text === 'OK' && props.onOk) {
             props.onOk()
+            return
         } else {
             return
         }

@@ -24,7 +24,7 @@ const Wrapper = styled.section`
     }
   }
 `
-type Category = '收入' | '支出'
+export type Category = '收入' | '支出'
 type Props = {
     value: Category,
     onChange: (category: Category) => void

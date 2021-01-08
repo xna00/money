@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {createId} from "./lib/createId";
+import {createId} from "../lib/createId";
 
 const defaultTags = (): Tag[] => [
     {id: createId(), name: '衣'},
@@ -12,10 +12,8 @@ type Tag = {
     name: string
 }
 const useTags = () => {
-    console.log('use')
     const [tags, _setTags] = useState<Tag[]>([])
     useEffect(() => {
-        console.log('local')
         const localTags = JSON.parse(window.localStorage.getItem('tags') || JSON.stringify(defaultTags()))
         setTags(localTags)
     }, [])
