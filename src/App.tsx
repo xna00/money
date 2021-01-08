@@ -9,13 +9,17 @@ import Tags from "./views/Tags";
 import Money from "./views/Money";
 import Statistics from "./views/Statistics";
 import NoMatch from "./views/Nomatch";
+import Tag from 'views/Tag'
 
 function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/tags">
+                <Route exact path="/tags">
                     <Tags/>
+                </Route>
+                <Route exact path="/tags/:id">
+                    <Tag/>
                 </Route>
                 <Route path="/money">
                     <Money/>
