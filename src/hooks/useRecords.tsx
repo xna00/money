@@ -7,7 +7,7 @@ export type _RecordItem = {
     category: CategoryType,
     amount: string
 }
-type RecordItem = {
+export type RecordItem = {
     createAt: string
 } & _RecordItem
 const useRecords = () => {
