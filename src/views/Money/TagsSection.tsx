@@ -26,32 +26,26 @@ const Wrapper = styled.section`
   }
 `
 type Props = {
-    value: string[],
-    onChange: (tags: string[]) => void
+    value: number[],
+    onChange: (tags: number[]) => void
 }
 const TagsSection: React.FC<Props> = (props) => {
-    const {tags, setTags} = useTags()
+    const {tags, addTag} = useTags()
     const selectedTags = props.value
-    const addTag = () => {
-        const tagName = window.prompt()
-        if (tagName) {
-            setTags([...tags, tagName])
-        }
-    }
-    const toggleTag = (tag: string) => {
+    const toggleTag = (tagId: number) => {
         props.onChange(
-            selectedTags.includes(tag) ?
-                selectedTags.filter(t => t !== tag) :
-                [...selectedTags, tag]
+            selectedTags.includes(tagId) ?
+                selectedTags.filter(id => id !== tagId) :
+                [...selectedTags, tagId]
         )
     }
     return (
         <Wrapper>
             <ul>
                 {tags.map(tag =>
-                    <li key={tag} onClick={() => toggleTag(tag)}
-                        className={selectedTags.includes(tag) ? 'selected' : ''}>
-                        {tag}
+                    <li key={tag.id} onClick={() => toggleTag(tag.id)}
+                        className={selectedTags.includes(tag.id) ? 'selected' : ''}>
+                        {tag.name}
                     </li>)}
             </ul>
             <button onClick={addTag}>新增标签</button>

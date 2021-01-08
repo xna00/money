@@ -27,10 +27,10 @@ function Tags() {
         <Layout>
             <TagList>
                 {tags.map(t =>
-                    <Link to={'/tags/' + t}>
-                        <TagItem key={t}>
+                    <Link to={'/tags/' + t} key={t.id}>
+                        <TagItem>
                             <span className='one-line'>
-                                {t}
+                                {t.name}
                             </span>
                             <Icon name={'right'}/>
                         </TagItem>

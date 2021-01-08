@@ -14,7 +14,7 @@ flex-direction: column;
 
 function Money() {
     const [selected, setSelected] = useState({
-        tags: [] as string[],
+        tags: [] as number[],
         note: '',
         category: '收入' as '收入' | '支出',
         amount: '0'
