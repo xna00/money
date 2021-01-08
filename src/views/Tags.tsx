@@ -22,12 +22,12 @@ border-bottom: 1px solid #bcbbc0;
 `
 
 function Tags() {
-    const {tags, setTags} = useTags()
+    const {tags, addTag} = useTags()
     return (
         <Layout>
             <TagList>
                 {tags.map(t =>
-                    <Link to={'/tags/' + t} key={t.id}>
+                    <Link to={'/tags/' + t.id} key={t.id}>
                         <TagItem>
                             <span className='one-line'>
                                 {t.name}
@@ -41,7 +41,7 @@ function Tags() {
                 <Space/>
                 <Space/>
                 <Space/>
-                <Button>新建标签</Button>
+                <Button onClick={addTag}>新建标签</Button>
             </Center>
         </Layout>
     );

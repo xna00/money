@@ -12,8 +12,10 @@ type Tag = {
     name: string
 }
 const useTags = () => {
+    console.log('use')
     const [tags, _setTags] = useState<Tag[]>([])
     useEffect(() => {
+        console.log('local')
         const localTags = JSON.parse(window.localStorage.getItem('tags') || JSON.stringify(defaultTags()))
         setTags(localTags)
     }, [])
@@ -38,6 +40,9 @@ const useTags = () => {
             setTags([...tags, {id: createId(), name: tagName}])
         }
     }
-    return {tags, setTags, addTag}
+    const findTag = (id: number) => {
+        return tags.find(tag => tag.id === id)
+    }
+    return {tags, setTags, addTag, findTag}
 }
 export default useTags
