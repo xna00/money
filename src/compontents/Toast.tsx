@@ -30,10 +30,9 @@ border-radius: 0.4em;
 `
 type Props = {
     visible: boolean
-} & PropsWithChildren<{}>
+}
 const Toast: React.FC<Props> = (props) => {
     const wrapperRef = useRef<HTMLDivElement>(null)
-    // setTimeout(() => wrapperRef.current!.style.animationName = 'fade-out', props.showTime + 500)
     useEffect(() => {
         !props.visible && (wrapperRef.current!.style.animationName = 'fade-out')
     }, [props.visible])
@@ -47,7 +46,7 @@ const showToast = (content: JSX.Element | string, showTime: number = 1000) => {
     showTime = showTime || 3000
     const div = document.createElement('div')
     document.body.appendChild(div)
-    const ToastWrapper: React.FC<{ showTime: number } & PropsWithChildren<{}>> = (props) => {
+    const ToastWrapper: React.FC<{ showTime: number }> = (props) => {
         const [visible, setVisible] = useState<boolean>(true)
         setTimeout(() => setVisible(false), showTime)
         return (

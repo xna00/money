@@ -1,10 +1,12 @@
 import Layout from "../compontents/Layout";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {RecordItem, useRecords} from "../hooks/useRecords";
 import {Category, CategoryType} from "../compontents/Category";
 import day from 'dayjs'
 import styled from "styled-components";
 import useTags from "../hooks/useTags";
+import {Chart} from "../compontents/Chart";
+import {EChartOption} from "echarts";
 
 const Header = styled.header`
 font-size: 18px;
@@ -25,12 +27,13 @@ justify-content: space-between;
   color: #999;
 }
 `
+type RecordListType = [
+    string,
+    RecordItem[],
+    number
+]
 type List = {
-    recordList: [
-        string,
-
-        RecordItem[]
-    ]
+    recordList: RecordListType
 }
 const CategoryWrapper = styled.div`
 background: white;
@@ -39,11 +42,7 @@ const RecordList: React.FC<List> = (props) => {
     const {findTag} = useTags()
     return (
         <div>
-            <Header><span>{props.recordList[0]}</span><span>{props.recordList[1]
-                .map(r => r.amount)
-                .reduce((result, amount) => {
-                    return (parseFloat(result) + parseFloat(amount)).toString()
-                })}¥</span></Header>
+            <Header><span>{props.recordList[0]}</span><span>{props.recordList[2]}¥</span></Header>
             <ol>
                 {props.recordList[1].map(r => <Item key={r.createAt}>
                     <span className="tags">{r.tags.map(tId => findTag(tId)?.name).join('、')}</span>
@@ -52,11 +51,11 @@ const RecordList: React.FC<List> = (props) => {
                 </Item>)}
             </ol>
         </div>
-
     )
 }
 
 function Statistics() {
+    console.log('static')
     const {records} = useRecords()
     const [category, setCategory] = useState<CategoryType>('支出')
     const onChange = (category: CategoryType) => setCategory(category)
@@ -75,13 +74,66 @@ function Statistics() {
         else
             return -1
     })
-    console.log(sortedDateArray)
+    const groupedArray: RecordListType[] = sortedDateArray.map(a => {
+        return [...a, a[1].map(r => parseFloat(r.amount)).reduce((result, amount) => result + amount)]
+    })
+    let data: { date: string, total: number }[] = []
+    const today = day(Date.now())
+    for (let i = 0; i < 30; i++) {
+        const day = today.subtract(i, 'd')
+        const aDayRecords = groupedArray.find(a => a[0] === day.format('YYYY年MM月DD日'))
+        data.unshift({
+            date: day.format('MM-DD'),
+            total: aDayRecords ? aDayRecords[2] : 0
+        })
+    }
+    const date = data.map(d => {
+        return d.date
+    })
+    const total = data.map(d => {
+        return d.total.toString()
+    })
+    const op: EChartOption = {
+        grid: {left: 0, right: 0, bottom: 20, top: 0},
+        tooltip: {},
+        xAxis: {
+            data: date,
+            axisLine: {
+                lineStyle: {
+                    color: '#666'
+                }
+            },
+
+        },
+
+        yAxis: {show: false},
+        series: [{
+            type: 'line',
+            data: total,
+            lineStyle: {
+                color: '#666'
+            },
+            symbol: 'circle',
+            symbolSize: 12
+
+            , itemStyle: {
+                color: '#666',
+            }
+        }
+        ],
+    }
+    const [option, setOption] = useState<EChartOption>(op)
+    useEffect(() => {
+
+        setOption({...op})
+    }, [category, records])
     return (
         <Layout>
             <CategoryWrapper>
                 <Category value={category} onChange={onChange}/>
             </CategoryWrapper>
-            {sortedDateArray.map(s => <RecordList recordList={s} key={s[0]}/>)}
+            <Chart option={option}/>
+            {groupedArray.map(s => <RecordList recordList={s} key={s[0]}/>)}
         </Layout>
     );
 }
