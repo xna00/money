@@ -24,7 +24,8 @@ a {
 }
 
 body {
-
+  max-width: 600px;
+  margin: 0 auto;
   font-family: $font-hei;
   font-size: 16px;
   line-height: 1.3;
