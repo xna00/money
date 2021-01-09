@@ -22,29 +22,31 @@ justify-content: space-between;
 > .note {
   margin-left: 16px;
   margin-right: auto;
+  color: #999;
 }
 `
-type X = {
-    Y: [
+type List = {
+    recordList: [
         string,
+
         RecordItem[]
     ]
 }
 const CategoryWrapper = styled.div`
 background: white;
 `
-const RecordList: React.FC<X> = (props) => {
+const RecordList: React.FC<List> = (props) => {
     const {findTag} = useTags()
     return (
         <div>
-            <Header><span>{props.Y[0]}</span><span>{props.Y[1]
+            <Header><span>{props.recordList[0]}</span><span>{props.recordList[1]
                 .map(r => r.amount)
                 .reduce((result, amount) => {
                     return (parseFloat(result) + parseFloat(amount)).toString()
                 })}¥</span></Header>
             <ol>
-                {props.Y[1].map(r => <Item key={r.createAt}>
-                    <span className="tags">{r.tags.map(tId => findTag(tId)?.name).join(',')}</span>
+                {props.recordList[1].map(r => <Item key={r.createAt}>
+                    <span className="tags">{r.tags.map(tId => findTag(tId)?.name).join('、')}</span>
                     <span className="note">{r.note}</span>
                     <span className="amount">{r.amount}¥</span>
                 </Item>)}
@@ -65,7 +67,7 @@ function Statistics() {
         if (!(key in sortedRecords)) {
             sortedRecords[key] = []
         }
-        sortedRecords[key].push(r)
+        sortedRecords[key].unshift(r)
     })
     const sortedDateArray = Object.entries(sortedRecords).sort((a, b) => {
         if (a[0] < b[0])
@@ -79,7 +81,7 @@ function Statistics() {
             <CategoryWrapper>
                 <Category value={category} onChange={onChange}/>
             </CategoryWrapper>
-            {sortedDateArray.map(s => <RecordList Y={s} key={s[0]}/>)}
+            {sortedDateArray.map(s => <RecordList recordList={s} key={s[0]}/>)}
         </Layout>
     );
 }

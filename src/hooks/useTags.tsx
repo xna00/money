@@ -29,8 +29,8 @@ const useTags = () => {
     }
     const addTag = () => {
         const tagName = window.prompt('请输入标签名')
-        if (tagName === null) {
-            window.alert('请输入标签名')
+        if (tagName === null || tagName === '') {
+            window.alert('标签名不能为空')
         } else if (tagExist(tagName)) {
             window.alert('标签已存在')
         } else {
