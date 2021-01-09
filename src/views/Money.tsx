@@ -6,6 +6,7 @@ import {NoteSection} from "./Money/NoteSection";
 import {NumberPadSection} from "./Money/NumberPadSection";
 import {TagsSection} from "./Money/TagsSection";
 import {_RecordItem, useRecords} from "../hooks/useRecords";
+import {showToast} from "../compontents/Toast";
 
 
 const MoneyLayout = styled(Layout)`
@@ -30,10 +31,11 @@ function Money() {
     const {addRecord} = useRecords()
     const onOk = () => {
         if (selected.tags.length === 0) {
-            window.alert('请选择标签')
+            showToast(<h3>请选择标签</h3>)
         } else {
             addRecord(selected)
             setSelected({...defaultSelected})
+            showToast(<h3>记账成功</h3>)
         }
     }
     return (

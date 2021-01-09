@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {createId} from "../lib/createId";
+import {showToast} from "../compontents/Toast";
 
 const defaultTags = (): Tag[] => [
     {id: createId(), name: '衣'},
@@ -30,11 +31,11 @@ const useTags = () => {
     const addTag = () => {
         const tagName = window.prompt('请输入标签名')
         if (tagName === null || tagName === '') {
-            window.alert('标签名不能为空')
+            showToast('标签名不能为空')
         } else if (tagExist(tagName)) {
-            window.alert('标签已存在')
+            showToast('标签已存在')
         } else {
-            window.alert('添加成功')
+            showToast('添加成功')
             setTags([...tags, {id: createId(), name: tagName}])
         }
     }
