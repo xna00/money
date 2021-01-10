@@ -27,7 +27,7 @@ function App() {
                 <Route path="/statistics">
                     <Statistics/>
                 </Route>
-                <Redirect exact from="/" to="/tags"/>
+                <Redirect exact from="/" to="/money"/>
                 <Route path="*">
                     <NoMatch/>
                 </Route>

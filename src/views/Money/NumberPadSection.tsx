@@ -17,6 +17,7 @@ const Wrapper = styled.section`
     > button{
       font-size: 18px; float: left; width: 25%; height: 64px; border: none;
       outline: none;
+      cursor: pointer;
       &.ok{ height: 128px; float: right; }
       &.zero{ width: 50%; }
       &:nth-child(1){
