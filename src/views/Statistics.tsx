@@ -94,8 +94,18 @@ function Statistics() {
         return d.total.toString()
     })
     const op: EChartOption = {
-        grid: {left: 0, right: 0, bottom: 20, top: 0},
-        tooltip: {},
+        tooltip: {
+            position: 'top',
+            formatter: '{c}',
+            padding:[0,5],
+            textStyle: {
+                lineHeight:10,
+
+            }
+        },
+        grid: {
+            left: 0, right: 0, bottom: 20, top: 40,
+        },
         xAxis: {
             data: date,
             axisLine: {

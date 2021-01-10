@@ -6,7 +6,7 @@ import * as echarts from 'echarts'
 const ChartWrapper = styled.div`
 overflow: auto;
 >div {
-height: 300px;
+height: 35vh;
 width: 420%;
 }
 `
@@ -31,7 +31,7 @@ const Chart: React.FC<Props> = (props) => {
     }, [props.option])
     return (
         <ChartWrapper ref={chartWrapperRef}>
-            <div ref={chartRef}></div>
+            <div ref={chartRef}/>
         </ChartWrapper>
     )
 }
