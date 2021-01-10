@@ -55,7 +55,6 @@ const RecordList: React.FC<List> = (props) => {
 }
 
 function Statistics() {
-    console.log('static')
     const {records} = useRecords()
     const [category, setCategory] = useState<CategoryType>('支出')
     const onChange = (category: CategoryType) => setCategory(category)

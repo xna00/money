@@ -14,7 +14,6 @@ type Props = {
     option: EChartOption
 }
 const Chart: React.FC<Props> = (props) => {
-    console.log('chart')
     const chartWrapperRef = useRef<HTMLDivElement>(null)
     const chartRef = useRef<HTMLDivElement>(null)
     let chart = useRef<ECharts>(null)
@@ -25,7 +24,6 @@ const Chart: React.FC<Props> = (props) => {
     }, [])
     useEffect(() => {
         if (!chart) return
-        console.log('chart effect')
         // @ts-ignore
         chart.current.setOption(props.option)
     }, [props.option])
